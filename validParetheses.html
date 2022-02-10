@@ -13,10 +13,92 @@
      * 1. create a function to find valid parentheses
      * 2. handle edgecases (return Enter a proper value)
      * 3. split the input into array
-     * 4. check the first index with second index
-     * 4.1. if not equal then return false
-     * 4.2. if equal then shift and continue the loop
-     * 5. return true
+     * 4. create a stack as empty array
+     * 5. loop the array
+     * 6. check if arr index value is equal to "(" or "{" or "["
+     * 6.1. if true push arr index value
+     * 6.2. if false pop the value from stack and store in variable pop
+     * 6.3. check if arr index value is equal to "(" or "{" or "[" and pop is not equal to ")" or "}" or "]"
+     * 6.3.1. if true then return false
+     * 7. return true
      */
+
+    var isValid = function (s) {
+      if (!s) {
+        return false;
+      }
+      const arr = s.split("");
+      if (arr.length <= 1) {
+        return false;
+      }
+      // debugger;
+      const stack = [];
+      for (let i = 0; i < arr.length; i++) {
+        if (arr[0] === ")" || arr[0] === "}" || arr[0] === "]") {
+          return false;
+        }
+        if (arr[i] === "(" || arr[i] === "{" || arr[i] === "[") {
+          stack.push(arr[i]);
+        } else {
+          const pop = stack.pop();
+          // console.log("pop", pop);
+          if (
+            (arr[i] === "}" && pop !== "{") ||
+            (arr[i] === "]" && pop !== "[") ||
+            (arr[i] === ")" && pop !== "(")
+          ) {
+            return false;
+          }
+        }
+      }
+      // console.log("stack", stack);
+      return true;
+    };
+    console.log(isValid("([)]"));
+    // if (stack[stack.length - 1] !== "(") {
+    //   stack.push(arr[i]);
+    // } else {
+    //   stack.pop();
+    // }
+    // if (stack[stack.length - 1] !== "{") {
+    //   stack.push(arr[i]);
+    // } else {
+    //   stack.pop();
+    // }
+    // if (stack[stack.length - 1] !== "[") {
+    //   stack.push(arr[i]);
+    // } else {
+    //   stack.pop();
+    // }
+    // if (arr[i] === "(") {
+    //   if (stack[stack.length - 1] !== "(") {
+    //     stack.push(arr[i]);
+    //     if (arr[i + 1] === ")") {
+    //       stack.pop();
+    //     } else {
+    //       stack.push(arr[i]);
+    //     }
+    //   }
+    // }
+    // if (arr[i] === "{") {
+    //   if (stack[stack.length - 1] === "{") {
+    //     stack.push(arr[i]);
+    //     if (arr[i + 1] === "}") {
+    //       stack.pop();
+    //     } else {
+    //       stack.push(arr[i]);
+    //     }
+    //   }
+    // }
+    // if (arr[i] === "[") {
+    //   if (stack[stack.length - 1] === "[") {
+    //     stack.push(arr[i]);
+    //     if (arr[i + 1] === "]") {
+    //       stack.pop();
+    //     } else {
+    //       stack.push(arr[i]);
+    //     }
+    //   }
+    // }
   </script>
 </html>
