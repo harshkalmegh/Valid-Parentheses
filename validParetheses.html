@@ -31,27 +31,24 @@
       if (arr.length <= 1) {
         return false;
       }
+      debugger;
       const stack = [];
       for (let i = 0; i < arr.length; i++) {
-        if (arr[0] === ")" || arr[0] === "}" || arr[0] === "]") {
-          return false;
-        }
-        if (arr[i] === "(" || arr[i] === "{" || arr[i] === "[") {
-          stack.push(arr[i]);
+        if (
+          (arr[i] === "]" && stack[stack.length - 1] === "[") ||
+          (arr[i] === "}" && stack[stack.length - 1] === "{") ||
+          (arr[i] === ")" && stack[stack.length - 1] === "(")
+        ) {
+          stack.pop();
         } else {
-          const pop = stack.pop();
-          if (
-            (arr[i] === "}" && pop !== "{") ||
-            (arr[i] === "]" && pop !== "[") ||
-            (arr[i] === ")" && pop !== "(")
-          ) {
-            return false;
-          }
+          stack.push(s[i]);
         }
       }
-      // console.log("stack", stack);
-      return true;
+      if (stack.length === 0) {
+        return true;
+      }
+      return false;
     };
-    console.log(isValid("([)]"));
+    console.log(isValid("([]{})"));
   </script>
 </html>
