@@ -11,7 +11,7 @@
     /**
      * Algorithm
      * 1. create a function to find valid parentheses
-     * 2. handle edgecases (return Enter a proper value)
+     * 2. handle edgecases (return false)
      * 3. split the input into array
      * 4. create a stack as empty array
      * 5. loop the array
@@ -31,7 +31,6 @@
       if (arr.length <= 1) {
         return false;
       }
-      // debugger;
       const stack = [];
       for (let i = 0; i < arr.length; i++) {
         if (arr[0] === ")" || arr[0] === "}" || arr[0] === "]") {
@@ -41,7 +40,6 @@
           stack.push(arr[i]);
         } else {
           const pop = stack.pop();
-          // console.log("pop", pop);
           if (
             (arr[i] === "}" && pop !== "{") ||
             (arr[i] === "]" && pop !== "[") ||
@@ -55,50 +53,5 @@
       return true;
     };
     console.log(isValid("([)]"));
-    // if (stack[stack.length - 1] !== "(") {
-    //   stack.push(arr[i]);
-    // } else {
-    //   stack.pop();
-    // }
-    // if (stack[stack.length - 1] !== "{") {
-    //   stack.push(arr[i]);
-    // } else {
-    //   stack.pop();
-    // }
-    // if (stack[stack.length - 1] !== "[") {
-    //   stack.push(arr[i]);
-    // } else {
-    //   stack.pop();
-    // }
-    // if (arr[i] === "(") {
-    //   if (stack[stack.length - 1] !== "(") {
-    //     stack.push(arr[i]);
-    //     if (arr[i + 1] === ")") {
-    //       stack.pop();
-    //     } else {
-    //       stack.push(arr[i]);
-    //     }
-    //   }
-    // }
-    // if (arr[i] === "{") {
-    //   if (stack[stack.length - 1] === "{") {
-    //     stack.push(arr[i]);
-    //     if (arr[i + 1] === "}") {
-    //       stack.pop();
-    //     } else {
-    //       stack.push(arr[i]);
-    //     }
-    //   }
-    // }
-    // if (arr[i] === "[") {
-    //   if (stack[stack.length - 1] === "[") {
-    //     stack.push(arr[i]);
-    //     if (arr[i + 1] === "]") {
-    //       stack.pop();
-    //     } else {
-    //       stack.push(arr[i]);
-    //     }
-    //   }
-    // }
   </script>
 </html>
